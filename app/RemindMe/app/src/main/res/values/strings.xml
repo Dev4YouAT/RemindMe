@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RemindMe</string>
+    <string name="name">RemindMe</string>
+    <string name="placeholder_username">Username</string>
+    <string name="placeholder_password">Passwort</string>
+    <string name="login">Login</string>
 </resources>
