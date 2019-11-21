@@ -7,15 +7,17 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
-app.get('/', function (req, res) {
-    res.send('');
+app.get('/test', function (req, res) {
+    res.send('test');
 });
 app.post('/login', function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
-    console.log("here");
-    res.send('true');
+    res.send(JSON.stringify({
+        id: 'id',
+        username: 'username'
+    }));
 });
 app.listen(PORT, function () {
-    console.log('Server running on port 3000');
+    console.log('Server running on port ' + PORT);
 });

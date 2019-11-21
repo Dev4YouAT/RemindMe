@@ -1,5 +1,4 @@
 import express = require('express');
-import bodyParser from 'body-parser';
 import { Request, Response } from 'express';
 
 const app: express.Application = express();
@@ -10,17 +9,20 @@ app.use(express.urlencoded({
     extended: true
 })); 
 
-app.get('/', (req :Request, res :Response) => {
-  res.send('');
+app.get('/test', (req :Request, res :Response) => {
+  res.send('test');
 });
 
 app.post('/login', (req :Request, res :Response) => {
     let username :string = req.body.username;
     let password :string = req.body.password;
-    console.log("here")
-    res.send('true');
+    
+    res.send(JSON.stringify({
+      id: 'id',
+      username: 'username'
+    }));
 });
 
 app.listen(PORT, () => {
-  console.log('Server running on port 3000');
+  console.log('Server running on port ' + PORT);
 });

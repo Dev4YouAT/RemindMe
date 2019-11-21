@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
 
-    private static final String BASE_URL = "http://10.0.0.15/";
+    private static final String BASE_URL = "http://91.114.226.181/";
 
     public static RemindMeAPI API;
 

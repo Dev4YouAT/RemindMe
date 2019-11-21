@@ -26,11 +26,12 @@ public class Login extends AppCompatActivity {
 
     public void onLogin(View view) {
         Call<User> call  = RetrofitService.API.makeLogin("", "");
+        //Call<String> call  = RetrofitService.API.test();
 
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Toast.makeText(getApplicationContext(), ":)", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_LONG).show();
             }
 
             @Override
