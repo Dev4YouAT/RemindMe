@@ -1,6 +1,10 @@
 import express = require('express');
 import { Request, Response } from 'express';
+import { UserService } from './user/user_service';
+import { User } from './user/User';
+import { Passwords } from './password_hash/password';
 
+const userService :UserService = new UserService();
 const app: express.Application = express();
 const PORT = 80;
 
@@ -17,10 +21,8 @@ app.post('/login', (req :Request, res :Response) => {
     let username :string = req.body.username;
     let password :string = req.body.password;
     
-    res.send(JSON.stringify({
-      id: 'id',
-      username: 'username'
-    }));
+    let user :User = userService.checkLogin(new User('', '', username, password));
+    res.send(JSON.stringify(user));
 });
 
 app.listen(PORT, () => {

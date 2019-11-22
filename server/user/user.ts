@@ -2,11 +2,13 @@ import { Passwords } from "../password_hash/password";
 
 export class User{
     public readonly id :string;
+    public readonly notificationID :string;
     public readonly username :string;
     public readonly password :string;
 
-    constructor(id :string, username :string, password :string, isEncrypted :boolean = false){
+    constructor(id :string, notificationID :string, username :string, password :string, isEncrypted :boolean = false){
         this.id = id;
+        this.notificationID = notificationID;
         this.username = username;
         this.password = !isEncrypted ? Passwords.get(password) : password;
     }

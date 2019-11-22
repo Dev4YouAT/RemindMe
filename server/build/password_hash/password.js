@@ -1,14 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var hash = require('password-hash');
 var Passwords = /** @class */ (function () {
     function Passwords() {
     }
     Passwords.get = function (password) {
-        return hash.generate(password);
+        var encrypted = new Buffer(password).toString('Base64');
+        return encrypted;
     };
-    Passwords.equal = function (password_1, password_2) {
-        return password_1 === password_2;
+    Passwords.equal = function (password_1, password_2, isEncrpyted) {
+        if (isEncrpyted === void 0) { isEncrpyted = true; }
+        return isEncrpyted ? password_1 === password_2 : password_1 === this.get(password_2);
     };
     return Passwords;
 }());

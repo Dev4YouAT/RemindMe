@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import at.dev4fun.remindme.api.RemindMeAPI;
@@ -25,13 +26,21 @@ public class Login extends AppCompatActivity {
     }
 
     public void onLogin(View view) {
-        Call<User> call  = RetrofitService.API.makeLogin("", "");
-        //Call<String> call  = RetrofitService.API.test();
+        Call<User> call  = RetrofitService.API.makeLogin(((EditText)findViewById(R.id.login_et_username)).getText().toString(), ((EditText)findViewById(R.id.login_et_password)).getText().toString());
+        //Call<String> call  = RetrofitService.API.test();root
 
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
-                Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_LONG).show();
+                User user = response.body();
+
+                if(user == null){
+                    Toast.makeText(getApplicationContext(), getString(R.string.invalid_login), Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                //TODO: login success
+                finish();
             }
 
             @Override

@@ -1,27 +1,46 @@
 import { User } from "./User";
 import { Passwords } from "../password_hash/password";
 import * as UUID from 'uuid';
+import * as FileSystem from 'fs';
+import * as Path from 'path';
 
 export class UserService{
-    public static readonly USERS :User[] = [];
+    public static USERS :User[] = [];
 
-    public static create(username :string, password :string) :void{
-        this.USERS.push(new User(
+    constructor(){
+        this.load();
+    }
+
+    public create(username :string, password :string) :void{
+        UserService.USERS.push(new User(
             UUID.v4.toString(),
+            '',
             username,
             password
         ));
+
+        this.save();
     }
 
-    public static checkLogin(user :User) :boolean{
-        for(let usr of this.USERS){
+    public checkLogin(user :User) :User{
+        for(let usr of UserService.USERS){
             if(usr.username === user.username){
                 if(Passwords.equal(usr.password, user.password)){
-                    return true;
+                    return usr;
                 }
             }
         }
 
-        return false;
+        let nullUser :User | any = null;
+
+        return nullUser;
+    }
+
+    private load() :void{
+        UserService.USERS = JSON.parse(FileSystem.readFileSync(Path.join(__dirname, '..', 'configs', 'user.json')).toString());
+    }
+
+    private save() :void{
+        FileSystem.writeFileSync(Path.join(__dirname, '..', 'configs', 'user.json'), JSON.stringify(UserService.USERS));
     }
 }
