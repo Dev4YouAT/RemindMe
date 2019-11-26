@@ -12,4 +12,8 @@ export class User{
         this.username = username;
         this.password = !isEncrypted ? Passwords.get(password) : password;
     }
+
+    public equals(user :User) :boolean{
+        return this.id === user.id;
+    }
 }

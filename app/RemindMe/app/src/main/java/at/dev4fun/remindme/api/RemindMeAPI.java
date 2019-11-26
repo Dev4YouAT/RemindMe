@@ -1,6 +1,7 @@
 package at.dev4fun.remindme.api;
 
 import at.dev4fun.remindme.models.User;
+import at.dev4fun.remindme.reponses.BaseReponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -13,4 +14,8 @@ public interface RemindMeAPI {
     @FormUrlEncoded
     @POST("login")
     Call<User> makeLogin(@Field("username") String username, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("register")
+    Call<BaseReponse> makeRegistration(@Field("username") String username, @Field("password") String password);
 }

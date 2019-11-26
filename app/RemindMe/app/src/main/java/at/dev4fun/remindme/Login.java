@@ -2,13 +2,17 @@ package at.dev4fun.remindme;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Base64;
+
 import at.dev4fun.remindme.api.RemindMeAPI;
 import at.dev4fun.remindme.models.User;
+import at.dev4fun.remindme.utils.Preferences;
 import at.dev4fun.remindme.utils.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,8 +30,8 @@ public class Login extends AppCompatActivity {
     }
 
     public void onLogin(View view) {
-        Call<User> call  = RetrofitService.API.makeLogin(((EditText)findViewById(R.id.login_et_username)).getText().toString(), ((EditText)findViewById(R.id.login_et_password)).getText().toString());
-        //Call<String> call  = RetrofitService.API.test();root
+        Call<User> call  = RetrofitService.API.makeLogin(((EditText)findViewById(R.id.login_et_username)).getText().toString(),
+                            Base64.getEncoder().encodeToString(((EditText)findViewById(R.id.login_et_password)).getText().toString().getBytes()));
 
         call.enqueue(new Callback<User>() {
             @Override
@@ -39,7 +43,7 @@ public class Login extends AppCompatActivity {
                     return;
                 }
 
-                //TODO: login success
+                Preferences.set(Preferences.PreferenceKeys.USER_ID, user.getId());
                 finish();
             }
 
@@ -51,5 +55,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void onGoToRegistration(View view) {
+        MainActivity.main.startActivity(new Intent(MainActivity.main, Registration.class));
+        finish();
     }
 }

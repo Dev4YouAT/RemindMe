@@ -11,4 +11,6 @@
     <string name="already_have_account">Du hast bereits einen Account?</string>
     <string name="to_login">Zum Login</string>
     <string name="invalid_login">Passwort oder Benutzername ist falsch</string>
+    <string name="passwords_do_not_match">Die Passwörter stimmen nicht überein</string>
+    <string name="username_already_taken">Dieser Benutzername ist bereits in Verwendung</string>
 </resources>
