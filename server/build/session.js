@@ -3,8 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Session = /** @class */ (function () {
     function Session() {
     }
-    Session.init = function (users) {
+    Session.init = function (users, reminders) {
         this.users = users.slice();
+        this.reminders = reminders.slice();
     };
     Session.add = function (user) {
         if (this.exists(user)) {
@@ -47,6 +48,7 @@ var Session = /** @class */ (function () {
         return -1;
     };
     Session.users = [];
+    Session.reminders = [];
     return Session;
 }());
 exports.Session = Session;

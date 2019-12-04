@@ -1,10 +1,13 @@
 import { User } from "./user/user";
+import { Reminder } from "./model/reminder";
 
 export class Session{
     protected static users :User[] = [];
+    protected static reminders :Reminder[] = [];
 
-    public static init(users :User[]) :void{
+    public static init(users :User[], reminders :Reminder[]) :void{
         this.users = [...users];
+        this.reminders = [...reminders];
     }
 
     public static add(user :User) :boolean{

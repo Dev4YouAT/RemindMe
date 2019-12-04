@@ -33,12 +33,13 @@ var UserService = /** @class */ (function (_super) {
         _this.load();
         return _this;
     }
-    UserService.prototype.create = function (username, password) {
+    UserService.prototype.create = function (username, password, isEcnrypted) {
+        if (isEcnrypted === void 0) { isEcnrypted = false; }
         if (this.existsByUsername(username)) {
             var nullResult = null;
             return nullResult;
         }
-        var user = new user_1.User(UUID.v4.toString(), '', username, password);
+        var user = new user_1.User(UUID.v4().toString(), '', username, password, isEcnrypted);
         session_1.Session.users.push(user);
         this.save();
         return user;

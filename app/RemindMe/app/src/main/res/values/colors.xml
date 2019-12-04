@@ -3,6 +3,8 @@
     <color name="primary">#EE8374</color>
     <color name="dark">#333333</color>
     <color name="medium">#555555</color>
-    <color name="light">#888888</color>
+    <color name="light">#888</color>
+    <color name="superlight">#C9C9C9</color>
     <color name="white">#ffffff</color>
+    <color name="today">#3EEE8374</color>
 </resources>

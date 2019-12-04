@@ -12,6 +12,7 @@ import java.util.Base64;
 
 import at.dev4fun.remindme.models.User;
 import at.dev4fun.remindme.reponses.BaseReponse;
+import at.dev4fun.remindme.utils.Loader;
 import at.dev4fun.remindme.utils.Preferences;
 import at.dev4fun.remindme.utils.RetrofitService;
 import retrofit2.Call;
@@ -38,10 +39,14 @@ public class Registration extends AppCompatActivity {
         Call<BaseReponse> call  = RetrofitService.API.makeRegistration(((EditText)findViewById(R.id.registration_et_username)).getText().toString(),
                 Base64.getEncoder().encodeToString(((EditText)findViewById(R.id.registration_et_password)).getText().toString().getBytes()));
 
+        Loader.show();
+
         call.enqueue(new Callback<BaseReponse>() {
             @Override
             public void onResponse(Call<BaseReponse> call, Response<BaseReponse> response) {
                 BaseReponse data = response.body();
+
+                Loader.hide();
 
                 if(data == null || data.getData() == null || data.getData().equals("")){
                     Toast.makeText(getApplicationContext(), getString(R.string.username_already_taken), Toast.LENGTH_LONG).show();
@@ -55,6 +60,7 @@ public class Registration extends AppCompatActivity {
             @Override
             public void onFailure(Call<BaseReponse> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
+                Loader.hide();
             }
         });
     }

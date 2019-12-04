@@ -12,17 +12,18 @@ export class UserService extends Session{
         this.load();
     }
 
-    public create(username :string, password :string) :User{
+    public create(username :string, password :string, isEcnrypted :boolean = false) :User{
         if(this.existsByUsername(username)){
             let nullResult :any = null;
             return nullResult;
         }
 
         let user :User = new User(
-            UUID.v4.toString(),
+            UUID.v4().toString(),
             '',
             username,
-            password
+            password,
+            isEcnrypted
         );
 
         Session.users.push(user);
