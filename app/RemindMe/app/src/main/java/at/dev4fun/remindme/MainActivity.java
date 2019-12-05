@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void onCreateReminder(View view){
         //TODO: implement create activity
+        startActivity(new Intent(this, Editor.class));
     }
 
     public static void loadReminders(){

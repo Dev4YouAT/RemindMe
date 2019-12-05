@@ -15,4 +15,9 @@
     <string name="username_already_taken">Dieser Benutzername ist bereits in Verwendung</string>
     <string name="reminder">Erinnerung</string>
     <string name="birthdate">Geburtstag</string>
+    <string name="male">männlich</string>
+    <string name="female">weiblich</string>
+    <string name="save">Speichern</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="example_date">01.01.2000</string>
 </resources>

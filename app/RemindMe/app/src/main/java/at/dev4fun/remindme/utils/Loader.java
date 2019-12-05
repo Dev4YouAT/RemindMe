@@ -13,6 +13,8 @@ public class Loader {
     }
 
     public static void hide(){
+        while(Loading.loader == null);
+
         Loading.loader.finish();
     }
 }

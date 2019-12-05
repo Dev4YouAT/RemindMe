@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="30dp"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:textAlignment="center"
         android:text="@string/reminder"
         android:textColor="@color/primary"
@@ -32,7 +32,7 @@
         android:background="@drawable/bottom_line"
         android:hint="@string/name" />
 
-    <EditText
+    <TextView
         android:id="@+id/editor_et_birthdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,9 +41,61 @@
         android:paddingVertical="8dp"
         android:textSize="18sp"
         android:fontFamily="@font/roboto"
-        android:inputType="date"
         android:layout_marginTop="20dp"
+        android:onClick="onChooseBirthdate"
         android:background="@drawable/bottom_line"
-        android:hint="@string/birthdate" />
+        android:text="@string/example_date" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/male"
+            android:textAllCaps="true"
+            android:textColor="@color/medium"
+            android:checked="true"
+            android:fontFamily="@font/roboto"
+            android:id="@+id/editor_rb_male" />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/female"
+            android:textAllCaps="true"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/medium"
+            android:fontFamily="@font/roboto"
+            android:id="@+id/editor_rb_female" />
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:background="#48BB57"
+        android:textSize="18sp"
+        android:layout_marginTop="40dp"
+        android:onClick="onSaveReminder"
+        android:fontFamily="@font/roboto" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:text="@string/cancel"
+        android:textColor="@color/white"
+        android:background="#DB3529"
+        android:textSize="18sp"
+        android:layout_marginTop="15dp"
+        android:onClick="onCancelReminder"
+        android:fontFamily="@font/roboto" />
 
 </LinearLayout>
