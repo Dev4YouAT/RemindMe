@@ -39,7 +39,7 @@ public class Editor extends AppCompatActivity {
 
         if(!alreadyExists){
             //TODO: create new reminder
-            Reminder r = new Reminder(UUID.randomUUID(), null, LocalDateTime.now(), name, null, date, gender);
+            Reminder r = new Reminder(UUID.randomUUID().toString(), null, LocalDateTime.now(), name, null, date, gender);
         }else{
             //TODO: update existing one
         }
