@@ -21,7 +21,7 @@ var reminder_service_1 = require("./user/reminder-service");
 var userService = new user_service_1.UserService();
 var reminderService = new reminder_service_1.ReminderService();
 var app = express();
-var PORT = 8080;
+var PORT = 80;
 var USERS_CONFIG_PATH = path.join(__dirname, 'configs', 'user.json');
 var REMINDERS_CONFIG_PATH = path.join(__dirname, 'configs', 'reminders.json');
 session_1.Session.init(JSON.parse(fs_1.default.readFileSync(USERS_CONFIG_PATH).toString()), JSON.parse(fs_1.default.readFileSync(REMINDERS_CONFIG_PATH).toString()));
@@ -37,7 +37,6 @@ app.post('/login', function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
     var user = userService.checkLogin(new user_1.User('', '', username, password, true));
-    console.log(user);
     res.send(JSON.stringify(user));
 });
 app.post('/register', function (req, res) {

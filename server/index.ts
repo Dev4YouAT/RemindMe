@@ -12,7 +12,7 @@ const userService :UserService = new UserService();
 const reminderService :ReminderService = new ReminderService();
 const app: express.Application = express();
 
-const PORT = 8080;
+const PORT = 80;
 const USERS_CONFIG_PATH = path.join(__dirname, 'configs', 'user.json');
 const REMINDERS_CONFIG_PATH = path.join(__dirname, 'configs', 'reminders.json');
 
@@ -35,7 +35,6 @@ app.post('/login', (req :Request, res :Response) => {
     let password :string = req.body.password;
     
     let user :User = userService.checkLogin(new User('', '', username, password, true));
-    console.log(user);
 
     res.send(JSON.stringify(user));
 });

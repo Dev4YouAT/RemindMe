@@ -1,5 +1,6 @@
 package at.dev4fun.remindme;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,6 +21,7 @@ import java.util.Arrays;
 import at.dev4fun.remindme.list.ReminderAdapater;
 import at.dev4fun.remindme.models.Reminder;
 import at.dev4fun.remindme.models.User;
+import at.dev4fun.remindme.utils.Codes;
 import at.dev4fun.remindme.utils.Loader;
 import at.dev4fun.remindme.utils.Preferences;
 import at.dev4fun.remindme.utils.RetrofitService;
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        //Preferences.remove(Preferences.PreferenceKeys.USER_ID);
+        Preferences.remove(Preferences.PreferenceKeys.USER_ID);
         if(!Preferences.exists(Preferences.PreferenceKeys.USER_ID)){
             Intent intent = new Intent(this, Login.class);
             startActivity(intent);
@@ -69,8 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void onCreateReminder(View view){
-        //TODO: implement create activity
-        startActivity(new Intent(this, Editor.class));
+        startActivityForResult(new Intent(this, Editor.class), Codes.CREATE_NEW_REMINDER.getValue());
     }
 
     public static void loadReminders(){
@@ -92,5 +94,16 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(main.getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == Codes.CREATE_NEW_REMINDER.getValue() && resultCode == Codes.CREATE_NEW_REMINDER.getValue()){
+            //TODO: make api request
+        }else if(requestCode == Codes.EDIT_EXISTING_REMINDER.getValue() && resultCode == Codes.EDIT_EXISTING_REMINDER.getValue()){
+
+        }
     }
 }
