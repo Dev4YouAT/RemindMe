@@ -1,4 +1,5 @@
 import { Passwords } from "../password_hash/password";
+import { Reminder } from "../model/reminder";
 
 export class User{
     public readonly id :string;

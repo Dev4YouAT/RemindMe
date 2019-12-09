@@ -7,6 +7,7 @@ import { User } from './user/user';
 import { Session } from './session';
 import { BaseResponse } from './model/base-reponse';
 import { ReminderService } from './user/reminder-service';
+import { Reminder } from './model/reminder';
 
 const userService :UserService = new UserService();
 const reminderService :ReminderService = new ReminderService();
@@ -30,7 +31,7 @@ app.get('/reminders', (req: Request, res :Response) => {
     res.send(JSON.stringify(reminderService.get(id)));
 });
 
-app.post('/login', (req :Request, res :Response) => {
+app.post('/login', (req :Request, res :Response) :void => {
     let username :string = req.body.username;
     let password :string = req.body.password;
     
@@ -39,13 +40,31 @@ app.post('/login', (req :Request, res :Response) => {
     res.send(JSON.stringify(user));
 });
 
-app.post('/register', (req :Request, res :Response) => {
+app.post('/register', (req :Request, res :Response) :void => {
     let username :string = req.body.username;
     let password :string = req.body.password;
 
     let user :User = userService.create(username, password, true);
 
     res.send(JSON.stringify(user == null ? new BaseResponse('') : new BaseResponse(user.id)));
+});
+
+app.post('/create', (req :Request, res :Response) :void => {
+    let reminder :Reminder = req.body.reminder;
+    reminderService.create(reminder);
+    res.send(JSON.stringify(new BaseResponse('success')));
+});
+
+app.delete('/edit', (req :Request, res :Response) :void => {
+    let reminder :Reminder = req.body.reminder;
+    reminderService.update(reminder);
+    res.send(JSON.stringify(new BaseResponse('success')));
+});
+
+app.delete('/delete', (req :Request, res :Response) :void => {
+    let reminderID :string = req.body.reminderID;
+    reminderService.delete(reminderID);
+    res.send(JSON.stringify(new BaseResponse('success')));
 });
 
 app.listen(PORT, () => {
